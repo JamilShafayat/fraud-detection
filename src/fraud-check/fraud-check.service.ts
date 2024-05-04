@@ -15,4 +15,8 @@ export class FraudCheckService {
     const fraudChecks = await this.fraudCheckModel.find();
     return fraudChecks;
   }
+
+  async create(fraudCheck: FraudCheck): Promise<FraudCheck> {
+    return await this.fraudCheckModel.create(fraudCheck);
+  }
 }

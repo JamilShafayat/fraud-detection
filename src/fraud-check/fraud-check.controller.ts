@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { FraudCheckService } from './fraud-check.service';
 import { FraudCheck } from './schemas/fraud-check.schema';
 
@@ -7,7 +7,15 @@ export class FraudCheckController {
   constructor(private fraudCheckService: FraudCheckService) {}
 
   @Get()
-  async getAllBooks(): Promise<FraudCheck[]>{
+  async getAllFraudChecks(): Promise<FraudCheck[]>{
     return this.fraudCheckService.findAll()
+  }
+
+  @Post()
+  async createFraudCheck(
+    @Body()
+    fraudCheck
+  ): Promise<FraudCheck> {
+    return this.fraudCheckService.create(fraudCheck)
   }
 }
