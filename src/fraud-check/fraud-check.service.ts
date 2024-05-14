@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { FraudCheck } from './schemas/fraud-check.schema';
+import { User } from '../auth/schemas/user.schema';
 
 @Injectable()
 export class FraudCheckService {
@@ -16,7 +17,8 @@ export class FraudCheckService {
     return fraudChecks;
   }
 
-  async create(fraudCheck: FraudCheck): Promise<FraudCheck> {
-    return await this.fraudCheckModel.create(fraudCheck);
+  async create(fraudCheck: FraudCheck, user: User): Promise<FraudCheck> {
+    const data = Object.assign(fraudCheck, {user: user._id})
+    return await this.fraudCheckModel.create(data);
   }
 }
