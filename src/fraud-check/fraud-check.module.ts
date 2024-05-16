@@ -13,4 +13,5 @@ import { AuthModule } from 'src/auth/auth.module';
   controllers: [FraudCheckController],
   providers: [FraudCheckService]
 })
+
 export class FraudCheckModule {}

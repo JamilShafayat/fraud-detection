@@ -11,17 +11,26 @@ export enum CardType {
   timestamps: true
 })
 export class FraudCheck{
-  @Prop()
-  title: string;
+  // @Prop()
+  // card_type: number;
 
   @Prop()
-  cardNumber: string;
+  cc_num: number;
 
   @Prop()
-  destination: string;
+  amt: number;
 
   @Prop()
-  fraud: boolean;
+  unix_time: number;
+
+  @Prop()
+  merch_lat: number;
+
+  @Prop()
+  merch_long: number;
+
+  @Prop()
+  isFraud: boolean;
 
 
   @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'User'})

@@ -1,14 +1,15 @@
-import { Prop } from '@nestjs/mongoose';
 import { User } from '../../auth/schemas/user.schema';
-import { IsEmpty } from 'class-validator';
+import { IsEmpty, IsNotEmpty } from 'class-validator';
 
 export class CreateFraudCheckDto {
-  readonly title: string;
-  readonly cardNumber: string;
-  readonly destination: string;
+  readonly cc_num: number;
+  readonly amt: number;
+  readonly unix_time: number;
+  readonly merch_lat: number;
+  readonly merch_long: number;
 
   @IsEmpty()
-  readonly fraud: boolean;
+  readonly isFraud: boolean;
 
   @IsEmpty({ message: "You cannot pass user id"})
   readonly user: User;
